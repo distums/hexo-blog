@@ -1,5 +1,5 @@
 ---
-title: things-you-may-not-have-known-about-node-js-modules
+title: 你未必知道的Node.js模块知识
 date: 2016-12-04 21:54:19
 tags:
   - 翻译
@@ -10,7 +10,7 @@ tags:
 
 > [原文地址](https://medium.com/@trstringer/things-you-may-not-have-known-about-node-js-modules-6ef926e4f4ff#.x243o93tj)
 
-我们常常是一头扎入某样‘东西’，开始使用它却往往对它的一些优美之处缺乏真正的理解。Node.js的模块系统就是一个这样的‘东西’，我们认为仅仅需要知道使用`require()`，而轻率的忽略了其它的一些闪光之处。以下罗列一些你一开始未必知道的模块知识...
+我们在使用某样‘东西’的时候常常是一头扎入，而对它的一些优美之处却缺乏真正的理解。比如Node.js的模块系统就是这样，我们认为仅仅需要知道如何去使用`require`，而轻率的忽略了其它的一些闪光点。以下列举一些你一开始未必知道的模块知识...
 
 ## 你可以检测模块是被直接运行还是通过require引用的
 
