@@ -54,4 +54,4 @@ CallStack最上方现在会显示是什么原因导致代码中断执行了。
 
 ## 6. 总结
 
-本文整理了Paul Irish分享的部分内容，其他像文件系统、CSS覆盖率和ServiceWorker调试则没整理到本文，可以看到google一直致力于提升开发者体验，帮助开发者更好地完成开发任务。强烈推荐有能力的同学去youtube上观看[原视频]((https://www.youtube.com/watch?v=HF1luRD4Qmk&index=13&list=PLNYkxOF6rcIBTs2KPy1E6tIYaWoFcG3uj))。
+本文整理了Paul Irish分享的部分内容，其他像文件系统、CSS覆盖率和ServiceWorker调试则没整理到本文，可以看到google一直致力于提升开发者体验，帮助开发者更好地完成开发任务。强烈推荐有能力的同学去youtube上观看[原视频](https://www.youtube.com/watch?v=HF1luRD4Qmk&index=13&list=PLNYkxOF6rcIBTs2KPy1E6tIYaWoFcG3uj)。
