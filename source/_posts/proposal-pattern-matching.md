@@ -126,9 +126,9 @@ match (arr) {
 }
 ```
 
-也可以让数组模式支持可迭代对象，然而这个设计是否可取尚不明确。首先，模式匹配的用户是不是期望数组模式去匹配任何实现了`Symbol.iterable`的对象还不清楚。其次，由于遍历一个可迭代对象是有副作用的，因此围绕在每个匹配分支上可迭代对象所处状态会引起诸多困惑，而且也不清楚默认有副作用的模式匹配是不是个好主意。
+也可以让数组模式支持可迭代对象，然而这个设计是否可取尚不明确。首先，模式匹配的用户是不是期望数组模式去匹配任何实现了`Symbol.iterable`的对象还不清楚。其次，由于遍历一个可迭代对象是有副作用的，因此它会让人们困惑可迭代对象在各个匹配分支上是处于什么样的状态，而且也不清楚默认有副作用的模式匹配是不是个好主意。
 
-尽管如此，解构确实是可以工作在可迭代对象上的，因此这在一致性方面尚有争议。
+尽管如此，解构确实是可以工作在可迭代对象上的，因此这在一致性方面颇具争议。
 
 ## 字面量模式
 
@@ -143,13 +143,13 @@ match (val) {
 
 ## 标识符模式与Symbol.matches
 
-标识符会查找它们运行时候的值。一个数值是匹配的只要它实现了`Symbol.matches`方法，并且该方法在输入数值是匹配的时候返回了真值（另外解构`Symbol.matches`返回值的一种方法请参考下面*可选拓展*部分）。
+标识符会查找它们运行时候的值。一个数值是匹配的只要它实现了`Symbol.matches`方法，并且该方法在输入数值是匹配的时候返回了真值（另外解构`Symbol.matches`返回值的一种方法请参考下面**可选拓展**部分）。
 
 这个功能带来了一些优点。第一，它允许匹配正则表达式。当然也可以考虑加个RegExp模式，但是正则表达式（特别是很复杂的那些）通常不会用‘inline’的方式声明。
 
 第二，它允许简单的类型/instanceof检查——一个类型可以实现它自己的`Symbol.matches`方法用于决定某个值是不是该类型。一个简单的实现可以仅仅是`return value instanceof this.constructor`。如此简单的实现可以在通过`class`关键字新建类型的时候默认添加上。
 
-第三，更加一般地，它围绕数值间的互相匹配创建了一个协议。这在未来的提案中也许会很有用，比如`interface`提案，用于添加类似于`nominal interface`<sup><a href="#nominal-interface">[2]</a></sup>或者`tagged union discrimination`<sup><a href="#nominal-interface">[2]</a></sup>的东西。
+第三，更加一般地，它围绕数值间的互相匹配创建了一个协议。这在未来的提案中也许会很有用，比如`interface`提案，用于添加类似于`nominal interface`<sup><a href="#nominal-interface">[2]</a></sup>或者`tagged union discrimination`<sup><a href="#tagged-union">[3]</a></sup>的东西。
 
 ```js
 match (val) {
@@ -203,9 +203,9 @@ let isVerbose = config => match (config) {
 
 上述模式中的`true`也可以是任何其他模式（在这个例子中它是字面量模式）。
 
-### 匹配嵌套
+### match嵌套
 
-由于match是一个表达式，你可以在一个match分支的后项中更进一步匹配。考虑：
+由于match是一个表达式，你可以在一个match分支的后项中进一步匹配。考虑：
 
 ```js
 let node = {
@@ -230,11 +230,11 @@ match (node) {
 
 ### 没有fall-through
 
-`Fall-through`<sup><a href="#fall-through">[3]</a></sup>可以通过`continue`关键字实现。如果没有匹配的模式，这将会是一个运行时的错误。
+`Fall-through`<sup><a href="#fall-through">[4]</a></sup>可以通过`continue`关键字实现。如果没有匹配的模式，这将会是一个运行时的错误。
 
 ### 声明vs表达式
 
-将`match`设计为声明将会使它看起来与`switch`子句非常一致。然而与`switch`一致可能会是有问题的，因为分支的行为会表现地不同。使用`switch`做为`match`的思维模型是有帮助的，但并不能涵盖全部。
+将`match`设计为声明会使它看起来与`switch`子句非常相像。然而与`switch`相像可能会是有问题的，因为分支的行为会表现地不同。使用`switch`做为`match`的思维模型是有帮助的，但并不能揭示全部。
 
 同时也没有足够的理由要让这个语法只支持声明。解析上下文或者仅限声明的`match`所存在的困难会限制其实用性。另一方面，表达式形式的`match`可以很方便地在各个地方使用，尤其是做为箭头函数的函数体。
 
@@ -248,7 +248,7 @@ match (node) {
 
 类Case的分支在语句构成上比较难处理，因为你需要一个关键字来表示一个分支的开始。一个显而易见的选择是使用`case`。找到其他符合语境的关键字会比较困难，但也许也不是完全不可能。
 
-另外，由于`match`表达式的值是第一个匹配分支执行后的值，模式匹配的用户将不得不理解语义上不是JS开发者通常所认为的那样的`completion value`<sup><a href="#completion-value">[4]</a></sup>。
+另外，由于`match`表达式的值是第一个匹配分支执行后的值，模式匹配的用户将不得不理解语义上不是JS开发者通常所认为的那样的`completion value`<sup><a href="#completion-value">[5]</a></sup>。
 
 最后，类case的分支在更小的场景中使用会让模式匹配显得繁琐。
 
@@ -262,7 +262,7 @@ match (node) {
 
 ### Else分支语法
 
-我这里没有过多介绍`else`是因为它与JavaScript的其他部分是一致的，但你也许会更喜欢类似`_`这种更紧凑的语法（尤其是如果你用过F#）。`_`还有可以绑定到一个值的好处，这可以保证你以无副作用的方式引用一个值。考虑：
+我这里没有过多介绍`else`是因为它与JavaScript的其他部分是一致的，但你也许会更喜欢类似`_`这样的更加简洁的语法（尤其是如果你用过F#）。`_`还有可以绑定到一个值的好处，这可以保证你以无副作用的方式引用一个值。考虑：
 
 ```js
 let obj = {
@@ -320,7 +320,7 @@ match (str) {
 }
 ```
 
-正则表达式对象的`Symbol.matches`方法会被调用，并且如果匹配成功了，则返回match对象。这个match对象可以通过`->`字句更进一步解构。
+正则表达式对象的`Symbol.matches`方法会被调用，并且如果匹配成功了，则返回match对象。这个match对象可以通过`->`子句更进一步解构。
 
 ### 匹配多个模式
 
@@ -328,15 +328,15 @@ match (str) {
 
 ### 对象默认‘严格匹配’
 
-在上文提案中，对象上的额外属性是允许的，而更长的数组则是不允许的除非你显示使用`...`来匹配。这同样也可以应用到对象上：`{x}`将仅匹配只拥有一个名为x的属性的对象，而`{x,...}`匹配任何拥有属性x的对象。但是，对象匹配的主要使用场景很可能并不关心额外的属性，而且通过`_`属性或者Symbol键值来扩充对象以添加额外的metadata是很普遍的，提案的语法看起来是没问题的（当然linter是可以将这强制为显示的如果它们希望）。
+在上文提案中，对象上的额外属性是允许的，而更长的数组则是不允许的除非你显示使用`...`来匹配。这同样也可以应用到对象上：`{x}`将仅匹配只拥有一个名为x的属性的对象，而`{x,...}`匹配任何拥有属性x的对象。但是，对象匹配的主要使用场景很可能并不关心额外的属性，而且通过`_`属性或者Symbol键值来扩充对象以添加额外的metadata是很普遍的，提案的语法看起来是没问题的（当然linter也可以将这强制为显示的）。
 
 ### 数组模式匹配可迭代对象
 
-在上文提案中，数组模式仅对拥有`length`属性的类数组对象有效。它可以拓展为支持任何可迭代对象，但必须注意避免产生副作用以及在匹配分支间移动时多次迭代可迭代对象。
+在上文提案中，数组模式仅对拥有`length`属性的类数组对象有效。它可以拓展为支持任何可迭代对象，但必须注意避免产生副作用以及在各匹配分支间移动时多次遍历可迭代对象。
 
 ### 没有围绕匹配数值的圆括号
 
-（我认为）`cover grammar`<sup><a href="#cover-grammar">[5]</a></sup>是可以避免的，通过进一步摆脱`switch`的语法同时省略`match`数值旁边的圆括号：
+（我认为）`cover grammar`<sup><a href="#cover-grammar">[6]</a></sup>是可以避免的，通过进一步摆脱`switch`的语法同时省略`match`数值旁边的圆括号：
 
 ```js
 match val {
@@ -354,10 +354,24 @@ match val {
 
 1. <a name="multi-methods"></a>**multi-methods**：[多分派](https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%88%86%E6%B4%BE)，可以到[这个库](https://github.com/KrisJordan/multimethod-js)感受下；
 
-2. <a name="nominal-interface"></a>**nominal-interface**和**tagged union discrimination**：
+2. <a name="nominal-interface"></a>**nominal interface**：标明型别系统，即若要两个类型相等，则它们必须要有相同的名字。相应的还有结构型別系統，即结构相同的类型是相等的。想要了解更多可以查看[这篇文章](https://medium.com/@thejameskyle/type-systems-structural-vs-nominal-typing-explained-56511dd969f4)；
 
-3. <a name="fall-through"></a>fall-through
+3. <a name="tagged-union"></a>**tagged union discrimination**：typescript 2.0支持这个，还是放个[文章](https://blog.mariusschulz.com/2016/11/03/typescript-2-0-tagged-union-types)自行感受下😏；
 
-4. <a name="completion-value"></a>completion-value
+4. <a name="fall-through"></a>**Fall-through**：这个是指在`switch`的`case`字句里面如果没写`break`，那么代码会从匹配的地方开始执行一直碰到`break`为止。例如：
+```js
+let a = 1;
+switch (a) {
+  case 1:
+      console.log(1);
+  case 2:
+      console.log(2);
+      break;
+}
+// -> 1
+// -> 2
+```
 
-5. <a name="cover-grammar"></a>cover-grammar
+5. <a name="completion-value"></a>**completion value**：直观地说，`completion value`就是在控制台执行代码时输出的值，而代码级别的捕获目前只能通过`eval`函数的返回值，另外还有一份提案提议用[`do`表达式](https://gist.github.com/dherman/1c97dfb25179fa34a41b5fff040f9879)来捕获；
+
+6. <a name="cover-grammar"></a>**cover grammar**：这个应该是用来解决语法冲突的，比如文中的match表达式和match函数调用，另外需要`cover grammar`的例子是对象字面量和解构，都用到了`{}`;
