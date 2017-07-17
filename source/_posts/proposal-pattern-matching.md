@@ -25,7 +25,7 @@ let getLength = vector => match (vector) {
 }
 ```
 
-模式匹配是基于数据的结构来选择不同行为的手段之一，其方式类似于解构。比如，你可以毫不费力地用指定的属性来匹配对象并且将这些属性的值绑定到匹配分支上。模式匹配使非常简洁和高度可读的函数式模式成为可能，并且已存在于许多语言中。这个提案从[Rust](https://doc.rust-lang.org/1.6.0/book/patterns.html)和[F#](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching)汲取了很多灵感。
+模式匹配是基于数据的结构来选择不同行为的手段之一，其方式类似于解构。比如，你可以毫不费力地用指定的属性来匹配对象并且将这些属性的值绑定到匹配分支上。模式匹配使非常简洁和高度可读的函数式模式成为可能，并且已存在于许多语言之中。这个提案从[Rust](https://doc.rust-lang.org/1.6.0/book/patterns.html)和[F#](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching)汲取了许多灵感。
 
 本提案当前处于stage 0阶段，因此不排除会有重大的变更。任何反馈和意见都不胜感激。请使用issue来提交问题或者想法，以及发送pull request来更新内容。修订、澄清，尤其是使用示例都将十分有帮助。
 
@@ -69,7 +69,7 @@ LiteralMatchPattern :
   // number, string, boolean, null, undefined 字面量
 ```
 
-对象和数组模式的语法有意地设计成与解构保持一致，因为出于以下理由这是有好处的。首先，它与开发者已经熟悉的现有语法相一致。其次，它允许在类似的场景中使用模式匹配和解构（例如，将来给多分派(multi-methods)等的提案）。然而在实际中，模式匹配JavaScript数值需要比简单的解构更具表达能力。这份提案添加了额外的模式来填补空白。为了提升本提案的实用性和表达能力，与解构更进一步分离也许也是合理的（比如，类似于[#17](https://github.com/tc39/proposal-pattern-matching/issues/17)那样）。
+对象和数组模式的语法有意地设计成与解构保持一致，因为出于以下理由这是有好处的。首先，它与开发者已经熟悉的现有语法相一致。其次，它允许在类似的场景中使用模式匹配和解构（例如，将来给`multi-methods`<sup><a href="#multi-methods">[1]</a></sup>等的提案）。然而在实际中，模式匹配JavaScript数值需要比简单的解构更具表达能力。这份提案添加了额外的模式来填补空白。为了提升本提案的实用性和表达能力，与解构更进一步分离也许也是合理的（比如，类似于[#17](https://github.com/tc39/proposal-pattern-matching/issues/17)那样）。
 
 ## 对象模式
 
@@ -126,6 +126,10 @@ match (arr) {
 }
 ```
 
+也可以让数组模式支持可迭代对象，然而这个设计是否可取尚不明确。首先，模式匹配的用户是不是期望数组模式去匹配任何实现了`Symbol.iterable`的对象还不清楚。其次，由于遍历一个可迭代对象是有副作用的，因此围绕在每个匹配分支上可迭代对象所处状态会引起诸多困惑，而且也不清楚默认有副作用的模式匹配是不是个好主意。
+
+尽管如此，解构确实是可以工作在可迭代对象上的，因此这在一致性方面尚有争议。
+
 ## 字面量模式
 
 字面量模式是string型，number型，bool型，null以及undefined的字面量，并且精确匹配该值。例子：
@@ -145,7 +149,7 @@ match (val) {
 
 第二，它允许简单的类型/instanceof检查——一个类型可以实现它自己的`Symbol.matches`方法用于决定某个值是不是该类型。一个简单的实现可以仅仅是`return value instanceof this.constructor`。如此简单的实现可以在通过`class`关键字新建类型的时候默认添加上。
 
-第三，更加一般地，它围绕数值间的互相匹配创建了一个协议。这在未来的提案中也许会很有用，比如`interface`提案，用于添加类似于`nominal interface`或者`tagged union discrimination`的东西。
+第三，更加一般地，它围绕数值间的互相匹配创建了一个协议。这在未来的提案中也许会很有用，比如`interface`提案，用于添加类似于`nominal interface`<sup><a href="#nominal-interface">[2]</a></sup>或者`tagged union discrimination`<sup><a href="#nominal-interface">[2]</a></sup>的东西。
 
 ```js
 match (val) {
@@ -197,6 +201,8 @@ let isVerbose = config => match (config) {
 }
 ```
 
+上述模式中的`true`也可以是任何其他模式（在这个例子中它是字面量模式）。
+
 ### 匹配嵌套
 
 由于match是一个表达式，你可以在一个match分支的后项中更进一步匹配。考虑：
@@ -220,17 +226,15 @@ match (node) {
 }
 ```
 
-上述模式中的`true`也可以是任何其他模式（在这个例子中它是字面量模式）。
-
 ## 设计目标与替代方案
 
 ### 没有fall-through
 
-Fall-through可以通过`continue`关键字实现。如果没有匹配的模式，这将会是一个运行时的错误。
+`Fall-through`<sup><a href="#fall-through">[3]</a></sup>可以通过`continue`关键字实现。如果没有匹配的模式，这将会是一个运行时的错误。
 
 ### 声明vs表达式
 
-将`match`设计为声明将会使它看起来与`switch`字句非常一致。然而与`switch`一致可能会是有问题的，因为分支的行为会表现地不同。使用`switch`做为`match`的思维模型是有帮助的，但并不能囊括全部。
+将`match`设计为声明将会使它看起来与`switch`子句非常一致。然而与`switch`一致可能会是有问题的，因为分支的行为会表现地不同。使用`switch`做为`match`的思维模型是有帮助的，但并不能涵盖全部。
 
 同时也没有足够的理由要让这个语法只支持声明。解析上下文或者仅限声明的`match`所存在的困难会限制其实用性。另一方面，表达式形式的`match`可以很方便地在各个地方使用，尤其是做为箭头函数的函数体。
 
@@ -244,15 +248,15 @@ Fall-through可以通过`continue`关键字实现。如果没有匹配的模式�
 
 类Case的分支在语句构成上比较难处理，因为你需要一个关键字来表示一个分支的开始。一个显而易见的选择是使用`case`。找到其他符合语境的关键字会比较困难，但也许也不是完全不可能。
 
-另外，由于`match`表达式的值是第一个匹配分支执行后的值，模式匹配的用户将不得不理解语义上不是JS开发者通常所认为的那样的`completion value`。
+另外，由于`match`表达式的值是第一个匹配分支执行后的值，模式匹配的用户将不得不理解语义上不是JS开发者通常所认为的那样的`completion value`<sup><a href="#completion-value">[4]</a></sup>。
 
 最后，类case的分支在更小的场景中使用会让模式匹配显得繁琐。
 
-#### 类箭头函数分支
+#### 类箭头函数语法的分支
 
 箭头函数支持一个表达式或者一个可选的语句块。把这应用到我们的模式匹配的语法带来了两个很好的特性：简洁而不失可拓展性，和用`,`分隔的分支。这个方案应用到了上述所有例子中。
 
-#### 仅表达式分支
+#### 仅表达式语法的分支
 
 你也可以只允许声明出现在一个分支中，然后依赖于`do`表达式来提供声明。不过这看起来有点不如类箭头函数分支友好。
 
@@ -332,7 +336,7 @@ match (str) {
 
 ### 没有围绕匹配数值的圆括号
 
-（我认为）cover grammar是可以避免的，通过进一步摆脱`switch`的语法同时省略`match`数值旁边的圆括号：
+（我认为）`cover grammar`<sup><a href="#cover-grammar">[5]</a></sup>是可以避免的，通过进一步摆脱`switch`的语法同时省略`match`数值旁边的圆括号：
 
 ```js
 match val {
@@ -345,3 +349,15 @@ match val {
 ### 内置Symbol.matches实现
 
 `Symbol.matches`可以在许多内置类型上实现，比如Number和String，用于匹配该类型的数值。另外，类可以创建`Symbol.matches`方法来为你做`instanceof`检查。
+
+## 译注
+
+1. <a name="multi-methods"></a>**multi-methods**：[多分派](https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%88%86%E6%B4%BE)，可以到[这个库](https://github.com/KrisJordan/multimethod-js)感受下；
+
+2. <a name="nominal-interface"></a>**nominal-interface**和**tagged union discrimination**：
+
+3. <a name="fall-through"></a>fall-through
+
+4. <a name="completion-value"></a>completion-value
+
+5. <a name="cover-grammar"></a>cover-grammar
