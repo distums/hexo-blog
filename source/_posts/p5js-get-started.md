@@ -77,6 +77,33 @@ function draw() {
 
 如果你输入有错，那么你将看不到任何东西。如果这发生了，请先确保你准确地拷贝了例子的代码：数字应当包含在圆括号中并用逗号分隔，以及应当用分号作为行的结尾。
 
-One of the most difficult things about getting started with programming is that you have to be very specific about the syntax. The browser isn't always smart enough to know what you mean, and can be quite fussy about the placement of punctuation. You'll get used to it with a little practice. Depending on the browser you are using, you can also see errors by looking at the JavaScript "console". In Chrome, for example, this is under View > Developer > JavaScript Console.
+开始编程最困难的事情之一是你必须对语法非常明确。浏览器并不是都能够弄清楚你的意图，并且它会对标点符号的位置非常苛刻。经过一些训练后你会慢慢适应它。视你所使用的浏览器而定，你可以在JavaScript “console”中查看错误信息。以Chrome为例，是在`View > Developer > JavaScript Console`。
+
+接下来，我们画一个更有意思些的图。删除上例中的文本，然后试试这个：
+
+```js
+function setup() {
+  createCanvas(640, 480);
+}
+
+function draw() {
+  if (mouseIsPressed) {
+    fill(0);
+  } else {
+    fill(255);
+  }
+  ellipse(mouseX, mouseY, 80, 80);
+}
+```
+
+这段代码首先会创建一个640像素宽和480像素高的绘画区域，然后会在鼠标所在的位置画白色的圆圈。当按下鼠标的按键时，圆圈的颜色会变成黑色。我们会在之后更加详细的解释这段代码。当前，运行这段代码，移动鼠标并单击来实际体验一下。
+
+![](./first-sketch2.png)
 
 ## 下一步
+
+- 阅读[Processing迁移教程](https://github.com/processing/p5.js/wiki/Processing-transition)以学习如何从Processing转到p5.js，以及两者的区别；
+
+- 完整文档请查看[reference](https://p5js.org/reference/)；
+
+- 查看[教程](https://p5js.org/tutorials/)和[示例](https://p5js.org/examples/)获取更多信息。
