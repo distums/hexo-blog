@@ -17,6 +17,17 @@
 
 ---
 
+# 技能清单
+
+以下均为我熟练使用的技能：
+
+- Web开发：HTML5/CSS3/JS&ES2015+/NodeJs
+- 前端框架：React/Redux/Bootstrap/jQuery
+- 前端工具：Webpack/Gulp/Babel/Chrome Devtools
+- 版本管理：Git
+
+---
+
 # 工作经历
 
 ## 陆金所 （ 2016年6月 ~ 至今 ）
@@ -70,15 +81,6 @@
 - [（翻译）JavaScript模式匹配提案](https://zhuanlan.zhihu.com/p/27941929)
 - [（翻译）通过动画介绍RxJS](https://distums.github.io/2017/03/22/an-animated-intro-to-rxjs/)
 - [（翻译）如何使用类而能够在晚上安然入睡](https://distums.github.io/2017/01/04/how-to-use-class-and-sleep-at-night/)
-
-# 技能清单
-
-以下均为我熟练使用的技能：
-
-- Web开发：HTML5/CSS3/JS&ES2015+/NodeJs
-- 前端框架：React/Redux/Bootstrap/jQuery
-- 前端工具：Webpack/Gulp/Babel/Chrome Devtools
-- 版本管理：Git
 
 # 致谢
 
