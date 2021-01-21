@@ -17,13 +17,13 @@
 ---
 
 # 专长
-熟悉pc/h5页面开发流程，能够从零搭建出符合现代开发流程的前端项目；有.net和nodejs相关后台开发经验，能顺畅与后端协作推进需求的开发；
+熟悉pc和h5页面开发流程，在pc平台方面有配置化渲染表单的设计经验；后端语言方面，有多年的.NET C#和nodejs开发经验；
 
 - 开发语言：熟练使用html5、css3进行开发，熟悉dom api以及各种web api，熟悉js语言以及各种新特性；
 - 前端框架：对vue/angular/jquery均有涉猎，目前主要使用react进行开发；
-- 前端工具：熟悉webpack打包工具以及gulp流程管理工具，熟悉chrome开发者工具的各种功能和技巧辅助开发和调试；
-- 版本管理：熟悉git开发流程，熟练使用git命令行；
-- 后台：nodejs、midwayjs/eggjs；
+- 开发工具：熟悉webpack打包工具以及gulp流程管理工具，熟悉chrome开发者工具的各种功能和技巧辅助开发和调试；
+- 版本管理：熟悉git开发流程，熟练使用git命令；
+- 后端：nodejs、eggjs/express；
 
 ---
 
