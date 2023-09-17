@@ -4,7 +4,7 @@
 - 本科/数学与应用数学/华南理工大学
 - 工作年限：11年
 - Github：[https://github.com/distums](https://github.com/distums)
-- 期望职位：前端开发工程师
+- 期望职位：前端开发
 - 期望城市：广州
 
 ---
