@@ -67,3 +67,10 @@ Project Achievements and Highlights:
 Through the client upgrade, we upgraded the Chrome kernel from v50 to v96, resulting in approximately a 20% performance improvement and enhancing the user experience for those using the new client.
 With the help of the company's gateway platform-designed automatic upgrade feature, client updates can be easily conducted in a controlled manner.
 The new client established a comprehensive error and crash log reporting mechanism, addressing printing issues that were difficult to handle in the old client.
+## lufax (06/2016 ~ 07/2018)
+## dmall (08/2015 ~ 05/2016)
+## ezbuy
+## xxx
+## xxx
+
+Thanks for reading!
