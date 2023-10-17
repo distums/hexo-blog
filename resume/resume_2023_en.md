@@ -73,4 +73,4 @@ The new client established a comprehensive error and crash log reporting mechani
 ## xxx
 ## xxx
 
-Thanks for reading!
+Thanks for your reading!
