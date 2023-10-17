@@ -5,7 +5,7 @@
 - github: https://github.com/distums
 - desired position: Front-end Development
 - desired city: guangzhou
-# Contact
+# Contact Me
 - Phone: 15710608830
 - Email: distu@sina.com
 # Self Evaluation
