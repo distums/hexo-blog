@@ -17,7 +17,7 @@ Problem-Solving Ability: Proficient in analyzing and solving problems. When face
 
 Quick Learning Ability: Always in a learning mindset, actively staying updated with the latest technologies and trends in the frontend field, including but not limited to new browser APIs and recent advancements in frameworks.
 # Experience
-## Eleme (10/2018 ~ present)
+## Eleme (07/2018 ~ present)
 ### Crocodile Delivery Platform
 Project Description:
 The project is a selection and delivery platform for Eleme's C-end users. It is used to select a group of merchants/products based on specified rules. After building the platform and setting up the pages, the designated pages are displayed in a specific resource location within the Eleme app based on specific rules such as time, region, and target audience.
@@ -55,7 +55,7 @@ Using AntV6, I completed the development of the flowchart editor and the convers
 Project Achievements and Highlights:
 I successfully completed the development of requirements with high quality and smoothly conducted testing and deployment of the functionalities.
 I documented standardized development guidelines for B-end operation platform applications, reducing the development costs for future team members.
-### Electron windows app
+### Electron Windows App
 Project Description:
 The project is the PC version of the Eleme merchant app. Merchants typically use this client to access the B-end pages. The core capability of this client is receipt printing, as there is currently no web API available to access the system-connected printers.
 
@@ -68,9 +68,13 @@ Through the client upgrade, we upgraded the Chrome kernel from v50 to v96, resul
 With the help of the company's gateway platform-designed automatic upgrade feature, client updates can be easily conducted in a controlled manner.
 The new client established a comprehensive error and crash log reporting mechanism, addressing printing issues that were difficult to handle in the old client.
 ## lufax (06/2016 ~ 07/2018)
+Working as hybrid h5 page developer for lufax finacial app.
 ## dmall (08/2015 ~ 05/2016)
-## ezbuy
-## xxx
-## xxx
+
+## ezbuy (09/2014 ~ 06/2015)
+## e-Vada Technology (07/2014 ~ 09/2014)
+Working as a node.js developer, participate in building the company's team management system.
+## JustHonor Technology (08/2012 ~ 06/2014)
+Working as a C# and front-end developer, participate in building the company's civil aviation fleet management system.
 
 Thanks for your reading!
