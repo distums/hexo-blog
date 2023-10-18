@@ -70,11 +70,12 @@ The new client established a comprehensive error and crash log reporting mechani
 ## lufax (06/2016 ~ 07/2018)
 Working as hybrid h5 page developer for lufax finacial app.
 ## dmall (08/2015 ~ 05/2016)
-
+Working as front-end developer, build an operations-oriented landing page management system from scratch.
 ## ezbuy (09/2014 ~ 06/2015)
+Working as C# and front-end developer, participate in building the company's E-commerce platform.
 ## e-Vada Technology (07/2014 ~ 09/2014)
-Working as a node.js developer, participate in building the company's team management system.
+Working as node.js developer, participate in building the company's team management system.
 ## JustHonor Technology (08/2012 ~ 06/2014)
-Working as a C# and front-end developer, participate in building the company's civil aviation fleet management system.
+Working as C# and front-end developer, participate in building the company's civil aviation fleet management system.
 
 Thanks for your reading!
