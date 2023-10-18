@@ -78,4 +78,4 @@ Working as node.js developer, participate in building the company's team managem
 ## JustHonor Technology (08/2012 ~ 06/2014)
 Working as C# and front-end developer, participate in building the company's civil aviation fleet management system.
 
-Thanks for your reading!
+Thank you for taking the time to review my resume. I look forward to the opportunity to work with you.
