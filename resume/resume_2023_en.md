@@ -18,6 +18,7 @@ Problem-Solving Ability: Proficient in analyzing and solving problems. When face
 Quick Learning Ability: Always in a learning mindset, actively staying updated with the latest technologies and trends in the frontend field, including but not limited to new browser APIs and recent advancements in frameworks.
 # Experience
 ## Eleme (07/2018 ~ present)
+Responsible for frontend development work on multiple critical business areas, such as order management. This includes requirement evaluation, system analysis, and coordinating with other team members for development tasks. Additionally, as the owner of frontend development infrastructure in the team, I have been responsible for designing and maintaining the functionality of team scaffolding and build tools.
 ### Crocodile Delivery Platform
 Project Description:
 The project is a selection and delivery platform for Eleme's C-end users. It is used to select a group of merchants/products based on specified rules. After building the platform and setting up the pages, the designated pages are displayed in a specific resource location within the Eleme app based on specific rules such as time, region, and target audience.
