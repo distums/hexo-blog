@@ -5,7 +5,7 @@
 - 工作年限：11年
 - Github：[https://github.com/distums](https://github.com/distums)
 - 期望职位：前端开发
-- 期望城市：广州
+- 期望城市：广州/深圳
 
 ---
 
